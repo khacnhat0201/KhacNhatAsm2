@@ -29,6 +29,7 @@
             <td>Toys Name</td>
             <td>Price</td>
             <td>Age Recommend</td>
+            <td>Date Add</td>
             <td>Delete</td>
             <td>Edit</td>
         </tr>
@@ -37,6 +38,7 @@
             <td>{{ToysName}}</td>
             <td>{{Price}}</td>
             <td>{{AgeRecommend}}</td>
+            <td>{{Dateadd}}</td>
             <td><a href="/delete?id={{_id}}" onclick="return confirmDelete('{{ToysName}}')">Delete</a></td>
             <td><a href="/edit?id={{_id}}">Edit</a></td>
         </tr>
@@ -46,7 +48,7 @@
     <form action="/doSearch" method="post">
         <div class="form-group">
             <label for="usr">Toys Name:</label>
-            <input type="text" class="form-control" name="txtName">
+            <input type="text" class="form-control" name="txtName" maxl >
         </div>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>

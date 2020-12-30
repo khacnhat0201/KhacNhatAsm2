@@ -26,12 +26,15 @@ app.post('/doInsert', async (req,res) =>{
     let nameInput = req.body.txtName;
     let priceInput = req.body.txtPrice;
     let ageInput = req.body.txtAge;
-
-    let client = await MongoClient.connect(url);
-    let dbo = client.db("ToyStoreDB");
-    let newProduct =  {ToysName: nameInput, Price : priceInput, AgeRecommend : ageInput};
-    await dbo.collection("Toys").insertOne(newProduct)
-    res.redirect('/');
+    let dateInput = new Date(req.body.txtDate);
+    let datetoday = new  Date();
+   
+        let client = await MongoClient.connect(url);
+        let dbo = client.db("ToyStoreDB");
+        let newProduct =  {ToysName: nameInput, Price : priceInput, AgeRecommend : ageInput, Dateadd : dateInput};
+        await dbo.collection("Toys").insertOne(newProduct)
+        res.redirect('/');
+    
 })
 app.get('/search', (req,res) =>{
     res.render('search');
@@ -71,8 +74,9 @@ app.post('/doEdit', async(req, res) => {
     let name = req.body.txtName;
     let priceInput = req.body.txtPrice;
     let inputAge = req.body.txtAge;
+    let inputDate = req.body.txtDate;
 
-    let newValues = { $set: { ToysName: name, Price: priceInput, AgeRecommend: inputAge } };
+    let newValues = { $set: { ToysName: name, Price: priceInput, AgeRecommend: inputAge, Dateadd: inputDate } };
     var ObjectID = require('mongodb').ObjectID;
     let condition = { "_id": ObjectID(id) };
 
